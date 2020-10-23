@@ -1,8 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { ReactNode } from 'react';
+import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<{
+    }>`
     border: none;
     border-radius:4px;
     font-size:1rem;
@@ -16,7 +17,23 @@ const StyledButton = styled.button`
     $:hover {
         backgrount: ${palette.gray[6]};
     }
+
+    ${props =>
+        props &&
+        css`
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            width: 100%;
+            font-size: 1.125rem;
+            background: ${palette.cyan[5]};
+            &:hover {
+                background: ${palette.cyan[4]};
+            }
+        `}
+
 `;
 
-const Button: React.FC<any> = (children) => <StyledButton {...children}/>;
+
+
+const Button: React.FC<{}> = (props) =>  <StyledButton {...props} />;
 export default Button;

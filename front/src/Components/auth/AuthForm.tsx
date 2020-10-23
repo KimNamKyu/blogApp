@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Button from '../../Components/common/Button';
 import { Link } from 'react-router-dom';
+import { register } from '../../serviceWorker';
+
 
 const AuthFormBlock = styled.div`
     h3 {
@@ -41,10 +43,19 @@ const Footer = styled.div`
     }
 `;
 
-const AuthForm: React.FC<any> = () => {
+const ButtonWithMarginTop = styled(Button)`
+    margin-top: 1rem;
+`;
+
+interface AuthFormProps {
+    type: string
+}
+
+const AuthForm: React.FC<AuthFormProps> = ({type}) => {
+    const text = type === 'login' ? '로그인' : '회원가입'
     return (
         <AuthFormBlock>
-            <h3>로그인</h3>
+            <h3>{text}</h3>
             <form>
                 <StyledInput autoComplete="username" name="username" placeholder="아이디" />
                 <StyledInput
@@ -53,9 +64,21 @@ const AuthForm: React.FC<any> = () => {
                     placeholder="비밀번호"
                     type="password"
                 />
-                <Button>로그인</Button>
+                {type === 'register' && (
+                    <StyledInput
+                        autoComplete="new-password"
+                        name="passwordContirm"
+                        placeholder="비밀번호 확인"
+                        type="password"
+                    />
+                )}
+                <ButtonWithMarginTop>{text}</ButtonWithMarginTop>
                 <Footer>
-                    <Link to="/register">회원가입</Link>
+                    {type === 'login' ? (
+                        <Link to="/register">회원가입</Link>
+                    ) : (
+                        <Link to="/login">로그인</Link>
+                    )}
                 </Footer>
             </form>
         </AuthFormBlock>

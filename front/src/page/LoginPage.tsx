@@ -2,10 +2,10 @@ import React from 'react';
 import AuthForm from '../Components/auth/AuthForm';
 import AuthTemplate from '../Components/auth/AuthTemplate';
 
-const LoginPage:React.FC<any> = () => {
+const LoginPage = () => {
     return (
         <AuthTemplate>
-            <AuthForm />
+            <AuthForm type='login'/>
         </AuthTemplate>
     )
 }

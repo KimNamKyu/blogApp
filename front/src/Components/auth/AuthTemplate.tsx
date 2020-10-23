@@ -33,14 +33,13 @@ const WhiteBox = styled.div`
 `;
 
 const AuthTemplate:React.FC<{}> = (children) => {
-    
     return (
         <AuthTemplateBlock>
             <WhiteBox>
                 <div className="logo-area">
                     <Link to="/">REACTERS</Link>
                 </div>
-                {children}
+                {children.children}
             </WhiteBox>
         </AuthTemplateBlock>
     )
